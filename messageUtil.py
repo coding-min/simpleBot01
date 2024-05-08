@@ -20,7 +20,7 @@ def get_answer(text, answer_dict, html_dict):
             return answer_with_line_breaks
         # 답변이 URL인 경우 링크와 함께 반환
         else:
-            if html_dict[answer] == 'collab':
+            if html_dict[answer] == 'web':
                 return f"[ {trim_text} ] 에 대한 답변입니다.<br><a href =\"{answer}\"  class=\"myButton1\" target=\"_blank\">{ trim_text }</a>"
             elif html_dict[answer] == 'service':
                 return f"[ {trim_text} ] 에 대한 답변입니다.<br><a href =\"{answer}\" class=\"myButton2\" target=\"_blank\">{trim_text}</a>"
@@ -44,7 +44,7 @@ def get_answer(text, answer_dict, html_dict):
                 response += f"{answer}<br>"
             # 답변이 URL인 경우 링크와 함께 추가
             else:
-                if html_dict[answer] == 'collab':
+                if html_dict[answer] == 'web':
                     response += f"<a href=\"{answer}\" class=\"myButton1\" target=\"_blank\">{ related_answer }</a> <br>"
                 elif html_dict[answer] == 'service':
                     response += f"<a href=\"{answer}\" class=\"myButton2\" target=\"_blank\">{related_answer}</a> <br>"
@@ -56,7 +56,7 @@ def get_answer(text, answer_dict, html_dict):
 
     else:
         #response = f"[ {trim_text} ] 에 대한 답변 결과를 찾을 수 없습니다."
-        response = f"[ {trim_text} ] 에 대한 답변 결과를 찾을 수 없습니다.<br><a href=\"http://clm.lge.com/issue/issues/?jql=text%20~%20'{trim_text}'\" class=\"myButton3\" target=\"_blank\"> CLM에서 검색</a>"
+        response = f"[ {trim_text} ] 에 대한 답변 결과를 찾을 수 없습니다.<br><a href=\"https://www.naver.com\" class=\"myButton3\" target=\"_blank\"> naver 에서 검색</a>"
         return response
 
 

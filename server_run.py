@@ -33,7 +33,7 @@ def chatbot_message():
     try:
         with connection.cursor() as cursor:
             # 데이터베이스에서 질문과 답변 데이터를 가져오기
-            sql = "SELECT question, answer, gubun FROM chatbot_data "
+            sql = "SELECT question, answer, gubun FROM simple_bot "
             cursor.execute(sql)
             result = cursor.fetchall()
 
@@ -72,12 +72,12 @@ def data_test():
     )
 
     cursor = conn.cursor()
-    sql = "SELECT data_no,question,answer,gubun FROM chatbot_data ORDER BY data_no DESC"
+    sql = "SELECT data_no,question,answer,gubun FROM simple_bot ORDER BY data_no DESC"
 
     cursor.execute(sql)
     result = cursor.fetchall()
 
-    datano_sql = "SELECT data_no FROM chatbot_data ORDER BY data_no DESC"
+    datano_sql = "SELECT data_no FROM simple_bot ORDER BY data_no DESC"
 
     cursor.execute(datano_sql)
     data_no = cursor.fetchall()
@@ -106,13 +106,13 @@ def data_insert():
             )
 
             with connection.cursor() as cursor1:
-                sql_check = "SELECT COUNT(*) FROM chatbot_data WHERE question=%s"
+                sql_check = "SELECT COUNT(*) FROM simple_bot WHERE question=%s"
                 cursor1.execute(sql_check, (question,))
                 count = cursor1.fetchone()["COUNT(*)"]
 
                 if count == 0:
                     # 데이터베이스에 데이터 삽입
-                    sql1 = "INSERT INTO chatbot_data (question, answer, gubun) VALUES (%s, %s, %s)"
+                    sql1 = "INSERT INTO simple_bot (question, answer, gubun) VALUES (%s, %s, %s)"
                     cursor1.execute(sql1, (question, answer, gubun))
                     connection.commit()
                 else:
@@ -151,7 +151,7 @@ def data_delete():
 
         with connection.cursor() as cursor:
             # 데이터 삭제
-            sql = "DELETE FROM chatbot_data WHERE data_no = %s"
+            sql = "DELETE FROM simple_bot WHERE data_no = %s"
             cursor.execute(sql, (data_no,))
             connection.commit()
 
@@ -189,13 +189,13 @@ def data_modify():
         )
 
         with connection.cursor() as cursor:
-            sql_check = "SELECT COUNT(*) FROM chatbot_data WHERE question=%s AND data_no != %s"
+            sql_check = "SELECT COUNT(*) FROM simple_bot WHERE question=%s AND data_no != %s"
             cursor.execute(sql_check, (modified_question, data_no))
             count = cursor.fetchone()["COUNT(*)"]
 
             if count == 0:
                 # 데이터베이스에 데이터 수정
-                sql = "UPDATE chatbot_data SET question = %s, answer = %s, gubun = %s WHERE data_no = %s"
+                sql = "UPDATE simple_bot SET question = %s, answer = %s, gubun = %s WHERE data_no = %s"
                 cursor.execute(sql, (modified_question, modified_answer, modified_gubun, data_no))
                 connection.commit()
             else:
@@ -232,7 +232,7 @@ def search_data():
 
     # 검색 쿼리 작성 (예: 검색 옵션이 'question'인 경우)
     if search_option == 'question':
-        sql = "SELECT data_no, question, answer, gubun FROM chatbot_data WHERE question LIKE %s"
+        sql = "SELECT data_no, question, answer, gubun FROM simple_bot WHERE question LIKE %s"
         search_input = f"%{search_input}%"
     cursor.execute(sql, (search_input,))
     # 다른 검색 옵션에 대한 쿼리도 추가할 수 있습니다.
