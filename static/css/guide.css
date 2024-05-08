@@ -1,0 +1,86 @@
+/*#porfile-img {
+    width: 150px;
+    height: 150px;
+    border: 1px solid #2B3856;
+    transform: scale(1); *//* 이미지 사이즈 고정 *//*
+    border-radius: 70%
+}*/
+
+#sidepanel {
+  float: left;
+  min-width: 280px;
+  max-width: 340px;
+  width: 40%;
+  height: 100%;
+  background: #2c3e50;
+  color: #f5f5f5;
+  overflow: hidden;
+  position: relative;
+}
+
+#profile {
+  width: 80%;
+  margin: 100px auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+#profile-img {
+    width: 150px;
+}
+
+.test {
+    font-family: 'Bagel Fat One', sans-serif;
+    font-size: 40px;
+    margin: 0px 0px 50px 0px;
+}
+
+.test2 {
+    font-family: 'Bagel Fat One', sans-serif;
+    font-size: 30px;
+    margin: 20px 0px 20px 0px;
+    display: block;
+    color:white;
+}
+
+.test2:hover {
+    color: radial-gradient(circle, rgba(35,157,212,1) 0%, rgba(131,97,224,1) 44%, rgba(0,212,255,1) 100%);
+    text-decoration:none;
+    -webkit-transform: scale(1.15);
+     -moz-transform: scale(1.15);
+      -ms-transform: scale(1.15);
+       -o-transform: scale(1.15);
+          transform: scale(1.15);
+}
+
+.content {
+  width: auto;
+  height: 100%;
+  overflow: auto;
+  position: relative;
+  text-align: center;
+  scroll-behavior: smooth;
+}
+
+.content img {
+   display: block;
+  margin: 10px auto 100px auto;
+  /*margin-right: auto;*/
+  width: 70%;
+}
+
+
+
+@media (max-width: 768px) {
+  .content img {
+    max-width: 500px;
+  }
+}
+
+#profile-img {
+    cursor: pointer;
+}
+
+
+

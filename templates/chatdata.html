@@ -1,0 +1,145 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<!DOCTYPE html>
+    <head>
+        <title class="test"> ChatBot Data </title>
+         <link rel="stylesheet" href="{{url_for('static',filename='css/chatmain.css') }}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    </head>
+
+    <body>
+
+
+        <div id="frame">
+            <div class="datahead">
+                <p id="texttitle">CHATBOT DATA</p>
+            </div>
+
+            <div class="panel">
+                <input type="text" id="searchInput" placeholder="검색어 입력">
+                 <div class="dropdown">
+                    <select id="searchoption">
+                        <option value="default" selected>선택</option>
+                        <option value="question">질문</option>
+                        <option value="answer">답변</option>
+                    </select>
+                </div>
+                <button class="search" onclick="searchData()">검색</button>
+
+                <button class="data_insert">데이터 삽입</button>
+
+            </div>
+
+            <div class="databody">
+                <table border="1" class="tablebody">
+                    <tr class="dataname">
+                        <th id="data_no">번호</th>
+                        <th>질문</th>
+                        <th id="data_result">답변</th>
+                        <th id="data_gubun">구분</th>
+                        <th></th>
+                    </tr>
+                    {% for row in result %}
+                    <tr class="data" data-no="{{ row.data_no }}">
+                        <th>{{ row.data_no }}</th>
+                        <td>{{ row.question }}</td>
+                        <td>{{ row.answer }}</td>
+                        <td>{{ row.gubun }}</td>
+                        <td id="tabledata"> <button class="data_modify" onclick="modify_openPopup('{{ row.data_no }}')">수정</button><button class="data_delete" onclick="delete_openPopup('{{ row.data_no }}')">삭제</button> </td>
+                    </tr>
+                    {% endfor %}
+
+                </table>
+
+            </div>
+            <div>
+            </div>
+        </div>
+
+
+        <div id="popup" class="popup-overlay">
+            <div class="popup-content">
+            <!--<span class="close-btn" onclick="closePopup()">&times;</span>-->
+                <h2>데이터 삽입</h2>
+                <form action="/chatdata" method="POST">
+                    <div class="dataform">
+                        <p>질문</p>
+                        <input id="question" type="text" placeholder="질문 입력" required>
+                        <p>답변</p>
+                        <!--#스마트 에디터
+                        <div id="smarteditor">
+                            <textarea  id="answer"></textarea>
+                        </div>-->
+                        <textarea id="answer" placeholder="답변 입력" required></textarea>
+                        <p>구분</p>
+                        <select id="gubun" required>
+                            <option value="">선택</option>
+                            <option value="collab">collab</option>
+                            <option value="service">service</option>
+                            <option value="clm">clm</option>
+                            <option value="txt">txt</option>
+                        </select>
+                    </div>
+                    <div class="datasubmit">
+                        <button class="ok" onclick="chatSave()">확인</button>
+                        <button class="no">취소</button>
+                    </div>
+                </form>
+            </div>
+	    </div>
+
+
+        <div id="delete_popup" class="delete_popup">
+            <div class="deletepopup-content">
+
+                <h2> 데이터를 삭제 하겠습니까? </h2>
+                    <div class="datasubmit" >
+                        <button class="delete_ok" onclick="deleteData()">확인</button>
+                        <button class="delete_no" onclick="delete_closePopup()">취소</button>
+                    </div>
+
+            </div>
+	    </div>
+
+        <div id="modify_popup" class="modify_popup">
+            <div class="modifypopup-content">
+                <h2>데이터 수정</h2>
+                <form action="/chatdata" method="POST">
+                    <div class="dataform">
+                        <p>질문</p>
+                        <input id="modified_question" name="modified_question" type="text"  required>
+                        <p>답변</p>
+                        <textarea id="modified_answer" name="modified_answer"  required></textarea>
+                        <p>구분</p>
+                        <select id="modified_gubun" name="modified_gubun" required>
+                            <option value="">선택</option>
+                            <option value="collab">collab</option>
+                            <option value="service">service</option>
+                            <option value="clm">clm</option>
+                            <option value="txt">txt</option>
+                        </select>
+                    </div>
+                    <div class="datasubmit">
+                        <button class="ok" onclick="modifyData()">확인</button>
+                        <button class="no" onclick="modify_closePopup()">취소</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    <script type="text/javascript" src="static/js/datatest.js"></script>
+
+    <!--#스마트에디터
+    <script type="text/javascript" src="static/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>-->
+
+
+    </body>
+
+</html>
+

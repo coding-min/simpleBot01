@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template
 from flask_socketio import SocketIO, send
+import configparser as parser
 import pymysql.cursors
 import messageUtil
 
@@ -9,6 +10,15 @@ app = Flask(__name__)
 socket_io = SocketIO(app)
 
 # MySQL Database 정보
+properies = parser.ConfigParser()
+properies.read('./config.ini')
+db_config= properies['DBINFO']
+
+db_host = db_config['host']
+db_user = db_config['user']
+db_password = db_config['password']
+db_name = db_config['name']
+
 
 def chatbot_message():
     global answer_dict, html_dict
@@ -247,5 +257,5 @@ def handle_message(message):
     #send(to_client, broadcast=True)
 
 if __name__ == '__main__':
-    socket_io.run(app, host='10.158.2.250', port=5001,allow_unsafe_werkzeug=True, debug=True)
+    socket_io.run(app, host='127.0.0.1', port=5001,allow_unsafe_werkzeug=True, debug=True)
 

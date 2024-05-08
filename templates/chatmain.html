@@ -1,0 +1,102 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title class="test"> ChatBot </title>
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'>
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.min.js"></script>
+    <!--<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>-->
+    <link rel="stylesheet" href="{{url_for('static',filename='css/chatmain.css') }}">
+</head>
+
+<body>
+
+    <div id="frame">
+
+        <div id="sidepanel">
+            <div id="profile">
+                <div class="wrap">
+                    <img id="profile-img" src="static/image/human.png" class="online" alt="">
+                    <p>DevOps3 Intellytics ChatBot</p>
+                </div>
+            </div>
+
+            <div id="contacts">
+                <ul>
+                    <li class="contact">
+                        <div class="wrap">
+                            <span class="contact-status online"></span>
+                            <img id="robot" src="static/image/robot.png" alt="">
+                            <div class="meta">
+                            <p class="name">Intellytics ChatBot</p>
+                            <p class="preview">Chat Bot</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="guide">
+                <ul>
+                    <li class="guide">
+                        <div class="wrap">
+                            <span class="contact-status online"></span>
+                            <img src="static/image/book1.png" alt="">
+                            <div class="meta">
+                            <p class="name">Guide</p>
+                            <p class="preview">Guide Page</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="content">
+            <div class="setting">
+                <img src="static/image/setting.png">
+            </div>
+
+            <div class="contact-profile">
+                <img src="static/image/robot.png" alt="" />
+                <p>Intellytics ChatBot</p>
+                <!--<img src="static/image/setting.png">-->
+            </div>
+
+            <div class="messages">
+                <ul id="messages">
+                <li class="replies">
+                <img src="static/image/robot.png" alt="" />
+                <p> 안녕하세요!<br>질문을 입력해주세요.</p>
+                </ul>
+            </div>
+
+            <div class="message-input">
+                <div class="wrap">
+                    <div id="userInput">
+                    <input id="textInput" type="text" name="msg" placeholder="질문을 입력해주세요." />
+
+                    <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <script type="text/javascript" src="static/js/chatmain.js"></script>
+
+
+</body>
+
+</html>
