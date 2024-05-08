@@ -9,11 +9,6 @@ app = Flask(__name__)
 socket_io = SocketIO(app)
 
 # MySQL Database 정보
-#db_host = 'intellyticsdb.c01jlvqfckgq.ap-northeast-2.rds.amazonaws.com'
-db_host = '165.186.175.240'
-db_user = 'jamong'
-db_password = 'sdt'
-db_name = 'tmp'
 
 def chatbot_message():
     global answer_dict, html_dict
